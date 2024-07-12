@@ -1,0 +1,17 @@
+.footer {
+  background: #f0f0f0;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  input {
+    flex: 1;
+    margin: 0 10px;
+    width: 50%;
+  }
+
+  .sendBtn {
+    width: 150px;
+  }
+}

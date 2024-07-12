@@ -1,0 +1,52 @@
+.messageWrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  position: relative;
+
+  &.sent {
+    align-self: flex-end;
+    flex-direction: row-reverse;
+  }
+
+  &.received {
+    align-self: flex-start;
+  }
+
+  .message {
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+
+    &.sent {
+      background: #4a4b4a;
+    }
+
+    &.received {
+      background: #006580;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    span {
+      font-size: 0.7em;
+      color: #bdbdbd;
+      margin-top: -3px;
+      display: block;
+    }
+  }
+
+  img.sent,
+  img.received {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: aliceblue;
+    border: 1px solid #ccc;
+    padding: 2px;
+    position: absolute;
+    top: -25px;
+  }
+}

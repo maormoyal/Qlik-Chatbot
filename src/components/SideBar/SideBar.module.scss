@@ -1,0 +1,43 @@
+.sideBar {
+  width: 20%;
+  min-width: 200px;
+  background: #f0f0f0;
+  padding: 10px;
+  overflow-y: auto;
+
+  h2 {
+    margin-top: 0;
+    font-size: 1rem;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  li {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+    padding: 1rem;
+
+    p {
+      margin: 0;
+      max-width: 90%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    span {
+      display: block;
+      font-size: 0.8em;
+      color: #888;
+      cursor: pointer;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}
