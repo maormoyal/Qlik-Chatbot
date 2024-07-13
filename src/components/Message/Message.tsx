@@ -25,7 +25,7 @@ const Message: React.FC<MessageProps> = ({ id, text, type, time }) => {
       const timer = setTimeout(() => {
         setDone(true);
         setIsTyping(false);
-      }, 1000); // duration of the typing animation
+      }, 3000); // duration of the typing animation
 
       return () => clearTimeout(timer);
     }

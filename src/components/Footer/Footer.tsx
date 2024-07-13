@@ -1,7 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { useChat } from '../Chat/ChatContext';
 import styles from './Footer.module.scss';
-
 import { v4 as uuidv4 } from 'uuid';
 
 type FooterProps = {
@@ -18,14 +17,20 @@ const Footer: React.FC<FooterProps> = ({ toggleSidebar }) => {
     if (!message.trim()) return;
     setIsSending(true);
     const now = new Date().toLocaleString();
-
     const newId = uuidv4();
+
     addMessage({
       id: `${newId}-sent`,
       time: now,
       text: message,
       type: 'sent',
     });
+
+    setMessage('');
+    if (textareaRef.current) {
+      textareaRef.current.style.height = 'auto';
+    }
+
     setTimeout(() => {
       addMessage({
         id: `${newId}-received`,
@@ -34,16 +39,12 @@ const Footer: React.FC<FooterProps> = ({ toggleSidebar }) => {
         type: 'received',
       });
       setIsSending(false);
-      setMessage('');
-      if (textareaRef.current) {
-        textareaRef.current.style.height = 'auto';
-      }
     }, 1000);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === 'Enter' && e.shiftKey) {
-      e.preventDefault(); // Prevent default Enter behavior
+      e.preventDefault();
       const { selectionStart, selectionEnd, value } = textareaRef.current!;
       const newValue =
         value.slice(0, selectionStart) + '\n' + value.slice(selectionEnd);
@@ -63,7 +64,7 @@ const Footer: React.FC<FooterProps> = ({ toggleSidebar }) => {
   const handleInput = () => {
     if (textareaRef.current) {
       textareaRef.current.style.height = 'auto';
-      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`; // Set new height
+      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
     }
   };
 
@@ -88,7 +89,7 @@ const Footer: React.FC<FooterProps> = ({ toggleSidebar }) => {
           onClick={sendMessage}
           disabled={isSending}
         >
-          {isSending ? 'Sending...' : 'Send'}
+          {isSending ? <span className={styles.loadingSpinner}></span> : 'Send'}
         </button>
       </div>
     </div>
