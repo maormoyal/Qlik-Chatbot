@@ -19,7 +19,7 @@
 
     textarea {
       flex: 1;
-      margin: 0 10px;
+      margin: 15px;
       resize: none;
       padding: 1rem 1.2rem 0 1.2rem;
       overflow-y: auto;
@@ -28,28 +28,33 @@
       color: black;
     }
   }
-  .sendBtn,
-  .switchBtn {
+  .sendBtn {
     background-color: #009845;
     color: white;
     width: 150px;
   }
 
-  .switchBtn {
-    border: 2px solid #009845;
+  .switchBtn,
+  .switchBtn:hover {
+    border: unset;
     color: #009845;
-    background-color: white;
+    background-color: unset;
+  }
+
+  .switchBtn:focus {
+    outline: none;
+  }
+
+  .switchBtn img {
+    width: 30px;
+    height: 30px;
+    transition: all 0.1s ease-in-out;
   }
 
   .sendBtn:hover {
     border: 2px solid #009845;
     color: #009845;
     background-color: white;
-  }
-
-  .switchBtn:hover {
-    background-color: #009845;
-    color: white;
   }
 
   .sendBtn {

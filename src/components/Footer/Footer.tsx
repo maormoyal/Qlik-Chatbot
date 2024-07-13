@@ -2,11 +2,17 @@ import React, { useState, useRef } from 'react';
 import { useChatContext } from '../Chat/ChatContext';
 import styles from './Footer.module.scss';
 
+import showSidebarIcon from '../../assets/show_sideba.svg';
+import hideSidebarIcon from '../../assets/hide_sidebar.svg';
+
 const Footer: React.FC = () => {
   const [message, setMessage] = useState('');
   const { sendMessage, isTypingReceivedMessage, showSidebar, setShowSidebar } =
     useChatContext();
+
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  const SidebarIcon = showSidebar ? hideSidebarIcon : showSidebarIcon;
 
   const handleSendMessage = () => {
     if (!message.trim()) return;
@@ -48,7 +54,7 @@ const Footer: React.FC = () => {
         className={styles.switchBtn}
         onClick={() => setShowSidebar(!showSidebar)}
       >
-        {!showSidebar ? 'Show Sidebar' : 'Hide Sidebar'}
+        <img src={SidebarIcon} alt='SideBar' />
       </button>
       <div className={styles.promptWrapper}>
         <textarea

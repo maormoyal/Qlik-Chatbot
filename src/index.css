@@ -58,8 +58,9 @@ button:hover {
 }
 
 button:focus,
-button:focus-visible {
-  outline: 1px auto -webkit-focus-ring-color;
+button:focus-visible,
+textarea:focus {
+  outline: none;
 }
 
 input,
