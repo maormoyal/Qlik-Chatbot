@@ -1,10 +1,10 @@
 import React from 'react';
 import styles from './Header.module.scss';
 import qlikLogo from '../../assets/logo-qlik.svg';
-import { useChat } from '../Chat/ChatContext';
+import { useChatContext } from '../Chat/ChatContext';
 
 const Header: React.FC = () => {
-  const { user } = useChat();
+  const { user } = useChatContext();
   return (
     <div className={styles.header}>
       <div>

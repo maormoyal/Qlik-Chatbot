@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from './SideBar.module.scss';
-import { useChat } from '../Chat/ChatContext';
+import { useChatContext } from '../Chat/ChatContext';
 
 const SideBar: React.FC = () => {
-  const { messages } = useChat();
+  const { messages, resendMessage, deleteMessage } = useChatContext();
   const latestMessages = messages.slice().reverse();
 
   return (
@@ -16,8 +16,18 @@ const SideBar: React.FC = () => {
                 <p>{msg.text}</p>
                 <span>{msg.time}</span>
                 <div className={styles.actions}>
-                  <span className={styles.resend}>Resend</span>
-                  <span className={styles.delete}>Delete</span>
+                  <span
+                    className={styles.resend}
+                    onClick={() => resendMessage(msg.id)}
+                  >
+                    Resend
+                  </span>
+                  <span
+                    className={styles.delete}
+                    onClick={() => deleteMessage(msg.id)}
+                  >
+                    Delete
+                  </span>
                 </div>
               </li>
             );

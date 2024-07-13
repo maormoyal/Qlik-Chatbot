@@ -1,7 +1,7 @@
 .messageWrapper {
   display: flex;
   align-items: center;
-  margin: 30px 0;
+  margin: 30px;
   position: relative;
 
   &.sent {
@@ -17,7 +17,7 @@
     padding: 10px;
     border-radius: 5px;
     color: white;
-    max-width: 70%;
+    max-width: 90%;
 
     &.sent {
       background: #4a4b4a;

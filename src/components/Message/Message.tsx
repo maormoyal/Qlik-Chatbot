@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Typewriter } from 'react-simple-typewriter';
 import styles from './Message.module.scss';
-import { useChat } from '../Chat/ChatContext';
+import { useChatContext } from '../Chat/ChatContext';
 import chatbotAvatar from '../../assets/logo-qlik.svg';
 
 type MessageProps = {
@@ -17,7 +17,7 @@ const Message: React.FC<MessageProps> = ({ id, text, type, time }) => {
     messages,
     isTypingReceivedMessage,
     setIsTypingReceivedMessage,
-  } = useChat();
+  } = useChatContext();
 
   const avatar = type === 'sent' ? user.avatar : chatbotAvatar;
   const isLastMessage = messages[messages.length - 1]?.id === id;
@@ -47,9 +47,9 @@ const Message: React.FC<MessageProps> = ({ id, text, type, time }) => {
               loop={1}
               cursor
               cursorStyle='|'
-              typeSpeed={10}
+              typeSpeed={5}
               deleteSpeed={0}
-              delaySpeed={50}
+              delaySpeed={30}
               onLoopDone={() => setIsTypingReceivedMessage(false)}
             />
           ) : (

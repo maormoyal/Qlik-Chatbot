@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import Chat from './Chat/Chat';
-import { useChat } from './Chat/ChatContext';
+import { useChatContext } from './Chat/ChatContext';
 import userAvatar from '../assets/maor-avatar.jpeg';
 
 const App: React.FC = () => {
-  const { setUser } = useChat();
+  const { setUser } = useChatContext();
 
   useEffect(() => {
     setUser({

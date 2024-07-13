@@ -1,11 +1,11 @@
 import React from 'react';
 import Message from '../Message/Message';
 import styles from './MessageList.module.scss';
-import { useChat } from '../Chat/ChatContext';
+import { useChatContext } from '../Chat/ChatContext';
 import ScrollToBottom from 'react-scroll-to-bottom';
 
 const MessageList: React.FC = () => {
-  const { messages } = useChat();
+  const { messages } = useChatContext();
 
   return (
     <ScrollToBottom
