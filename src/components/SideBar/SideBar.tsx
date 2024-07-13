@@ -13,12 +13,11 @@ const SideBar: React.FC = () => {
           if (msg.type === 'sent') {
             return (
               <li key={msg.id}>
-                <img src='' alt='' />
                 <p>{msg.text}</p>
                 <span>{msg.time}</span>
                 <div className={styles.actions}>
-                  <span>Resend</span>
-                  <span>Delete</span>
+                  <span className={styles.resend}>Resend</span>
+                  <span className={styles.delete}>Delete</span>
                 </div>
               </li>
             );

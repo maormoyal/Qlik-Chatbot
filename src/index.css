@@ -77,6 +77,36 @@ textarea {
   }
 }
 
+.scrollToBottom .scrollToBottom__followButton {
+  position: absolute;
+  bottom: 13px;
+  right: 4.5rem;
+  padding: 5px 10px 10px 10px;
+  background-color: white;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.5rem;
+  width: 40px;
+  height: 40px;
+  line-height: 0;
+}
+
+.scrollToBottom .scrollToBottom__followButton:hover {
+  background-color: #009845;
+}
+
+.scrollToBottom .scrollToBottom__followButton::before {
+  content: '↓';
+  color: #009845;
+}
+.scrollToBottom .scrollToBottom__followButton:hover::before {
+  content: '↓';
+  color: white;
+}
+
 /* @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

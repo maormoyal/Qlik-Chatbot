@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Typewriter } from 'react-simple-typewriter';
 import styles from './Message.module.scss';
 import { useChat } from '../Chat/ChatContext';
-import chatbotAvatar from '../../assets/react.svg';
+import chatbotAvatar from '../../assets/logo-qlik.svg';
 
 type MessageProps = {
   id: string;
@@ -47,7 +47,7 @@ const Message: React.FC<MessageProps> = ({ id, text, type, time }) => {
               cursorStyle='|'
               typeSpeed={5}
               deleteSpeed={0}
-              delaySpeed={50}
+              delaySpeed={0}
               onLoopDone={() => setDone(true)}
             />
           ) : (

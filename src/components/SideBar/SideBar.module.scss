@@ -38,6 +38,14 @@
     .actions {
       display: flex;
       justify-content: space-between;
+
+      .resend:hover {
+        color: #009845;
+      }
+
+      .delete:hover {
+        color: #ff0000;
+      }
     }
   }
 }
