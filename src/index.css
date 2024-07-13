@@ -45,6 +45,7 @@ button {
     cursor: not-allowed;
   }
 }
+
 button:hover {
   color: #fafafa;
   background-color: #009845;
@@ -55,9 +56,10 @@ button:hover {
     cursor: not-allowed;
   }
 }
+
 button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  outline: 1px auto -webkit-focus-ring-color;
 }
 
 input,
@@ -74,6 +76,7 @@ textarea {
   &::placeholder {
     color: #009845;
     font-size: 0.8rem;
+    line-height: 3;
   }
 }
 

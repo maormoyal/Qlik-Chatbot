@@ -21,7 +21,7 @@
       flex: 1;
       margin: 0 10px;
       resize: none;
-      padding: 0 1.2em;
+      // padding: 0 1.2em;
       overflow-y: auto;
       max-height: 200px;
       color: black;
@@ -32,6 +32,13 @@
     background-color: #009845;
     color: white;
     width: 150px;
+  }
+
+  .sendBtn:hover,
+  .switchBtn:hover {
+    border: 2px solid #009845;
+    color: #009845;
+    background-color: white;
   }
 
   .sendBtn {
