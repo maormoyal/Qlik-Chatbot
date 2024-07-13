@@ -1,26 +1,22 @@
-import React, { useState } from 'react';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import MessageList from '../MessageList/MessageList';
 import SideBar from '../SideBar/SideBar';
 import styles from './Chat.module.scss';
-
-// import { ChatProvider } from './ChatContext';
+import { useChatContext } from './ChatContext';
 
 const Chat: React.FC = () => {
-  const [showSidebar, setShowSidebar] = useState(true);
+  const { showSidebar } = useChatContext();
 
   return (
-    // <ChatProvider>
     <div className={styles.chatContainer}>
       <Header />
       <div className={styles.chatContent}>
         {showSidebar && <SideBar />}
         <MessageList />
       </div>
-      <Footer toggleSidebar={() => setShowSidebar(!showSidebar)} />
+      <Footer />
     </div>
-    // </ChatProvider>
   );
 };
 

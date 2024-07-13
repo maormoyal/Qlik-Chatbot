@@ -6,8 +6,10 @@
   overflow-y: auto;
   padding: 2rem;
   margin: 0 auto;
-  background-image: url('../../assets/bg.jpg');
-  background-size: contain;
+  // background: rgba(0, 101, 128, 0.8) url('../../assets/') no-repeat;
+  background: url('../../assets/bg-7.jpg') no-repeat;
+  background-size: cover;
+  // background-position: left -390px bottom;
   background-position: center;
   position: relative;
 }

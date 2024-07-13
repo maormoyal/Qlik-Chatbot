@@ -22,6 +22,8 @@ interface ChatContextProps {
   sendMessage: (text: string) => void;
   resendMessage: (id: string) => void;
   deleteMessage: (id: string) => void;
+  showSidebar: boolean;
+  setShowSidebar: (showSidebar: boolean) => void;
 }
 
 const ChatContext = createContext<ChatContextProps | undefined>(undefined);
@@ -32,11 +34,15 @@ export const ChatProvider: React.FC<{ children: ReactNode }> = ({
   const [messages, setMessages] = useState<Message[]>(
     mockMessages as Message[]
   );
+
   const [user, setUser] = useState<User>({
     name: 'Maor Moyal',
     avatar: userAvatar,
   });
+
   const [isTypingReceivedMessage, setIsTypingReceivedMessage] = useState(false);
+
+  const [showSidebar, setShowSidebar] = useState(true);
 
   const addMessage = (message: Message) => {
     setMessages((prevMessages) => [...prevMessages, message]);
@@ -97,6 +103,8 @@ export const ChatProvider: React.FC<{ children: ReactNode }> = ({
         sendMessage,
         resendMessage,
         deleteMessage,
+        showSidebar,
+        setShowSidebar,
       }}
     >
       {children}

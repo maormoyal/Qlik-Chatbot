@@ -2,13 +2,10 @@ import React, { useState, useRef } from 'react';
 import { useChatContext } from '../Chat/ChatContext';
 import styles from './Footer.module.scss';
 
-type FooterProps = {
-  toggleSidebar: () => void;
-};
-
-const Footer: React.FC<FooterProps> = ({ toggleSidebar }) => {
+const Footer: React.FC = () => {
   const [message, setMessage] = useState('');
-  const { sendMessage, isTypingReceivedMessage } = useChatContext();
+  const { sendMessage, isTypingReceivedMessage, showSidebar, setShowSidebar } =
+    useChatContext();
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const handleSendMessage = () => {
@@ -47,8 +44,11 @@ const Footer: React.FC<FooterProps> = ({ toggleSidebar }) => {
 
   return (
     <div className={styles.footer}>
-      <button className={styles.switchBtn} onClick={toggleSidebar}>
-        Show/Hide Sidebar
+      <button
+        className={styles.switchBtn}
+        onClick={() => setShowSidebar(!showSidebar)}
+      >
+        {!showSidebar ? 'Show Sidebar' : 'Hide Sidebar'}
       </button>
       <div className={styles.promptWrapper}>
         <textarea
