@@ -1,17 +1,40 @@
 .footer {
   background: #f0f0f0;
-  padding: 10px;
+  padding: 0px 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  min-height: 70px;
 
-  input {
+  .promptWrapper {
+    display: flex;
+    align-items: center;
     flex: 1;
-    margin: 0 10px;
-    width: 50%;
+
+    input {
+      flex: 1;
+      margin: 0 10px;
+      width: 50%;
+    }
+
+    textarea {
+      flex: 1;
+      margin: 0 10px;
+      resize: none;
+      padding: 0 1.2em;
+      overflow-y: auto;
+      max-height: 200px;
+    }
+  }
+  .sendBtn,
+  .switchBtn {
+    background-color: #009845;
+    color: white;
+    width: 150px;
   }
 
-  .sendBtn {
-    width: 150px;
+  .switchBtn {
+    width: 20%;
+    min-width: 200px;
   }
 }

@@ -1,7 +1,26 @@
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: white;
+  }
+}
+
 .messageWrapper {
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
   position: relative;
 
   &.sent {
@@ -28,6 +47,19 @@
 
     p {
       margin: 0;
+      display: inline-block;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    &.typing p {
+      animation: typing 2s steps(40, end), blink-caret 0.75s step-end infinite;
+      border-right: 1px solid white;
+    }
+
+    &.done p {
+      border-right: none;
+      animation: none;
     }
 
     span {

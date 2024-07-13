@@ -7,9 +7,8 @@ const App: React.FC = () => {
   const { setUser } = useChat();
 
   useEffect(() => {
-    console.log('Setting user'); // Add this line
     setUser({
-      name: 'John Doe',
+      name: 'Maor Moyal',
       avatar: userAvatar,
     });
   }, [setUser]);
