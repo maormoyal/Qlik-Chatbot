@@ -9,13 +9,13 @@ type FooterProps = {
 
 const Footer: React.FC<FooterProps> = ({ toggleSidebar }) => {
   const [message, setMessage] = useState('');
-  const [isSending, setIsSending] = useState(false);
-  const { addMessage } = useChat();
+  const { addMessage, isTypingReceivedMessage, setIsTypingReceivedMessage } =
+    useChat();
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const sendMessage = () => {
     if (!message.trim()) return;
-    setIsSending(true);
+    setIsTypingReceivedMessage(true);
     const now = new Date().toLocaleString();
     const newId = uuidv4();
 
@@ -38,7 +38,7 @@ const Footer: React.FC<FooterProps> = ({ toggleSidebar }) => {
         text: `The chatbot answer is ${message}`,
         type: 'received',
       });
-      setIsSending(false);
+      setIsTypingReceivedMessage(false);
     }, 1000);
   };
 
@@ -82,14 +82,18 @@ const Footer: React.FC<FooterProps> = ({ toggleSidebar }) => {
           onChange={(e) => setMessage(e.target.value)}
           onInput={handleInput}
           onKeyDown={handleKeyDown}
-          disabled={isSending}
+          disabled={isTypingReceivedMessage}
         />
         <button
           className={styles.sendBtn}
           onClick={sendMessage}
-          disabled={isSending}
+          disabled={isTypingReceivedMessage}
         >
-          {isSending ? <span className={styles.loadingSpinner}></span> : 'Send'}
+          {isTypingReceivedMessage ? (
+            <span className={styles.loadingSpinner}></span>
+          ) : (
+            'Send'
+          )}
         </button>
       </div>
     </div>

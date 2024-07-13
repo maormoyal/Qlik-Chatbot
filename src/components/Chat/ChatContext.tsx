@@ -15,6 +15,8 @@ interface ChatContextProps {
   addMessage: (message: Message) => void;
   user: User;
   setUser: (user: User) => void;
+  isTypingReceivedMessage: boolean;
+  setIsTypingReceivedMessage: (isTyping: boolean) => void;
 }
 
 const ChatContext = createContext<ChatContextProps | undefined>(undefined);
@@ -25,18 +27,27 @@ export const ChatProvider: React.FC<{ children: ReactNode }> = ({
   const [messages, setMessages] = useState<Message[]>(
     mockMessages as Message[]
   );
-
   const [user, setUser] = useState<User>({
     name: 'Maor Moyal',
     avatar: userAvatar,
   });
+  const [isTypingReceivedMessage, setIsTypingReceivedMessage] = useState(false);
 
   const addMessage = (message: Message) => {
     setMessages((prevMessages) => [...prevMessages, message]);
   };
 
   return (
-    <ChatContext.Provider value={{ messages, addMessage, user, setUser }}>
+    <ChatContext.Provider
+      value={{
+        messages,
+        addMessage,
+        user,
+        setUser,
+        isTypingReceivedMessage,
+        setIsTypingReceivedMessage,
+      }}
+    >
       {children}
     </ChatContext.Provider>
   );

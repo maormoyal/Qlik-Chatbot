@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Typewriter } from 'react-simple-typewriter';
 import styles from './Message.module.scss';
 import { useChat } from '../Chat/ChatContext';
@@ -12,43 +12,45 @@ type MessageProps = {
 };
 
 const Message: React.FC<MessageProps> = ({ id, text, type, time }) => {
-  const { user, messages } = useChat();
+  const {
+    user,
+    messages,
+    isTypingReceivedMessage,
+    setIsTypingReceivedMessage,
+  } = useChat();
+
   const avatar = type === 'sent' ? user.avatar : chatbotAvatar;
   const isLastMessage = messages[messages.length - 1]?.id === id;
-  const [isTyping, setIsTyping] = useState(
-    isLastMessage && type === 'received'
-  );
-  const [done, setDone] = useState(false);
 
   useEffect(() => {
-    if (isTyping) {
+    if (isLastMessage && type === 'received') {
+      setIsTypingReceivedMessage(true);
       const timer = setTimeout(() => {
-        setDone(true);
-        setIsTyping(false);
+        setIsTypingReceivedMessage(false);
       }, text.length * 10);
       return () => clearTimeout(timer);
     }
-  }, [isTyping, text.length]);
+  }, [isLastMessage, type, text.length, setIsTypingReceivedMessage]);
 
   return (
     <div className={`${styles.messageWrapper} ${styles[type]}`}>
       <img className={styles[type]} src={avatar} alt='Avatar' />
       <div
-        className={`${styles.message} ${done ? styles.done : ''} ${
-          styles[type]
-        }`}
+        className={`${styles.message} ${
+          isTypingReceivedMessage ? '' : styles.done
+        } ${styles[type]}`}
       >
         <p>
-          {isTyping ? (
+          {isTypingReceivedMessage && isLastMessage && type === 'received' ? (
             <Typewriter
               words={[text]}
               loop={1}
               cursor
               cursorStyle='|'
-              typeSpeed={5}
+              typeSpeed={10}
               deleteSpeed={0}
-              delaySpeed={0}
-              onLoopDone={() => setDone(true)}
+              delaySpeed={50}
+              onLoopDone={() => setIsTypingReceivedMessage(false)}
             />
           ) : (
             text
