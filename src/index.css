@@ -76,7 +76,7 @@ textarea {
   &::placeholder {
     color: #009845;
     font-size: 0.8rem;
-    line-height: 3;
+    line-height: 1.5;
   }
 }
 
@@ -108,6 +108,34 @@ textarea {
 .scrollToBottom .scrollToBottom__followButton:hover::before {
   content: '↓';
   color: white;
+}
+
+/* Style the scrollbar */
+::-webkit-scrollbar {
+  width: 12px; /* Width of the scrollbar */
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Color of the scrollbar track */
+  border-radius: 10px; /* Rounded corners for the track */
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; /* Color of the scrollbar handle */
+  border-radius: 10px; /* Rounded corners for the handle */
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Color of the scrollbar handle on hover */
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin; /* Firefox scrollbar width */
+  scrollbar-color: #888 #f1f1f1; /* Firefox scrollbar color and track color */
 }
 
 /* @media (prefers-color-scheme: light) {

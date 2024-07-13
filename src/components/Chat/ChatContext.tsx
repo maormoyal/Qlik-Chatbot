@@ -3,6 +3,7 @@ import { mockMessages } from './Chat.data.spec';
 import { User } from './Chat.types';
 import userAvatar from '../../assets/maor-avatar.jpeg';
 import { v4 as uuidv4 } from 'uuid';
+import { reformatDate } from '../../utils/reformatDate';
 
 interface Message {
   id: string;
@@ -42,7 +43,7 @@ export const ChatProvider: React.FC<{ children: ReactNode }> = ({
   };
 
   const sendMessage = (text: string) => {
-    const now = new Date().toLocaleString();
+    const now = reformatDate(new Date());
     const newId = uuidv4();
 
     addMessage({

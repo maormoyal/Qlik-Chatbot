@@ -1,10 +1,34 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styles from './SideBar.module.scss';
 import { useChatContext } from '../Chat/ChatContext';
 
 const SideBar: React.FC = () => {
-  const { messages, resendMessage, deleteMessage } = useChatContext();
+  const { messages, resendMessage, deleteMessage, isTypingReceivedMessage } =
+    useChatContext();
   const latestMessages = messages.slice().reverse();
+
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
+
+  const handleDropdownToggle = (id: string) => {
+    setOpenDropdown(openDropdown === id ? null : id);
+  };
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (
+      dropdownRef.current &&
+      !dropdownRef.current.contains(event.target as Node)
+    ) {
+      setOpenDropdown(null);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   return (
     <div className={styles.sideBar}>
@@ -17,17 +41,35 @@ const SideBar: React.FC = () => {
                 <span>{msg.time}</span>
                 <div className={styles.actions}>
                   <span
-                    className={styles.resend}
-                    onClick={() => resendMessage(msg.id)}
+                    className={styles.dropdownToggle}
+                    onClick={() => handleDropdownToggle(msg.id)}
                   >
-                    Resend
+                    ...
                   </span>
-                  <span
-                    className={styles.delete}
-                    onClick={() => deleteMessage(msg.id)}
-                  >
-                    Delete
-                  </span>
+                  {openDropdown === msg.id && (
+                    <div className={styles.dropdownMenu} ref={dropdownRef}>
+                      <button
+                        className={styles.resend}
+                        disabled={isTypingReceivedMessage}
+                        onClick={() => {
+                          resendMessage(msg.id);
+                          setOpenDropdown(null);
+                        }}
+                      >
+                        Resend
+                      </button>
+                      <button
+                        className={styles.delete}
+                        disabled={isTypingReceivedMessage}
+                        onClick={() => {
+                          deleteMessage(msg.id);
+                          setOpenDropdown(null);
+                        }}
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  )}
                 </div>
               </li>
             );

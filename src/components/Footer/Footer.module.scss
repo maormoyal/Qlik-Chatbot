@@ -21,9 +21,10 @@
       flex: 1;
       margin: 0 10px;
       resize: none;
-      // padding: 0 1.2em;
+      padding: 1rem 1.2rem 0 1.2rem;
       overflow-y: auto;
       max-height: 200px;
+      min-height: 40px;
       color: black;
     }
   }
@@ -34,11 +35,21 @@
     width: 150px;
   }
 
-  .sendBtn:hover,
-  .switchBtn:hover {
+  .switchBtn {
     border: 2px solid #009845;
     color: #009845;
     background-color: white;
+  }
+
+  .sendBtn:hover {
+    border: 2px solid #009845;
+    color: #009845;
+    background-color: white;
+  }
+
+  .switchBtn:hover {
+    background-color: #009845;
+    color: white;
   }
 
   .sendBtn {

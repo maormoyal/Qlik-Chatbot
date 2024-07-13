@@ -1,15 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
-
-const reformatDate = (date: Date) => {
-  return date.toLocaleString('en-US', {
-    year: '2-digit',
-    month: '2-digit',
-    day: '2-digit',
-    hour: 'numeric',
-    minute: 'numeric',
-    hour12: true,
-  });
-};
+import { reformatDate } from '../../utils/reformatDate';
 
 const id1 = uuidv4();
 const id2 = uuidv4();
