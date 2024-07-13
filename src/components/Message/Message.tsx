@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Typewriter } from 'react-simple-typewriter';
 import styles from './Message.module.scss';
 import { useChat } from '../Chat/ChatContext';
 import chatbotAvatar from '../../assets/react.svg';
@@ -18,35 +19,42 @@ const Message: React.FC<MessageProps> = ({ id, text, type, time }) => {
     isLastMessage && type === 'received'
   );
   const [done, setDone] = useState(false);
-  const textRef = useRef<HTMLParagraphElement>(null);
 
   useEffect(() => {
     if (isTyping) {
       const timer = setTimeout(() => {
         setDone(true);
         setIsTyping(false);
-      }, 3000); // duration of the typing animation
-
+      }, text.length * 10);
       return () => clearTimeout(timer);
     }
-  }, [isTyping]);
-
-  useEffect(() => {
-    if (done && textRef.current) {
-      textRef.current.classList.add('done');
-    }
-  }, [done]);
+  }, [isTyping, text.length]);
 
   return (
     <div className={`${styles.messageWrapper} ${styles[type]}`}>
       <img className={styles[type]} src={avatar} alt='Avatar' />
       <div
-        className={`${styles.message} ${isTyping ? styles.typing : ''} ${
-          done ? styles.done : ''
-        } ${styles[type]}`}
+        className={`${styles.message} ${done ? styles.done : ''} ${
+          styles[type]
+        }`}
       >
-        <p ref={textRef}>{text}</p>
-        <span>{time}</span>
+        <p>
+          {isTyping ? (
+            <Typewriter
+              words={[text]}
+              loop={1}
+              cursor
+              cursorStyle='|'
+              typeSpeed={5}
+              deleteSpeed={0}
+              delaySpeed={50}
+              onLoopDone={() => setDone(true)}
+            />
+          ) : (
+            text
+          )}
+        </p>
+        <span className={styles.timeStamp}>{time}</span>
       </div>
     </div>
   );
