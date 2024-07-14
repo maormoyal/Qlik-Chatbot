@@ -32,11 +32,7 @@ const Header: React.FC = () => {
         </div>
       </div>
       <Modal show={showModal} onClose={() => setShowModal(false)}>
-        <img
-          src={user.avatar}
-          alt='user avatar'
-          style={{ width: '300px', height: '300px' }}
-        />
+        <img src={user.avatar} alt='user avatar' style={{ width: '300px' }} />
       </Modal>
     </>
   );
