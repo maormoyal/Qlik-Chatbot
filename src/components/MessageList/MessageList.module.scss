@@ -18,3 +18,9 @@
     color: rgb(229, 220, 213);
   }
 }
+
+@media (max-width: 768px) {
+  .messageList {
+    padding: 20px 0 0 0;
+  }
+}

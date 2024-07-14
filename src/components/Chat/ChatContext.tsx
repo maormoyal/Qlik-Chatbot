@@ -47,7 +47,8 @@ export const ChatProvider: React.FC<{ children: ReactNode }> = ({
   const [isTypingReceivedMessage, setIsTypingReceivedMessage] =
     useState<boolean>(false);
 
-  const [showSidebar, setShowSidebar] = useState<boolean>(true);
+  const initialSidebarState = window.innerWidth > 768 ? true : false;
+  const [showSidebar, setShowSidebar] = useState<boolean>(initialSidebarState);
 
   const [theme, setTheme] = useState<Theme>('light');
   const toggleTheme = () => {

@@ -98,3 +98,33 @@
   height: 15px;
   animation: spin 1s linear infinite;
 }
+
+@media (max-width: 768px) {
+  .desktop-only {
+    display: block;
+  }
+  .mobile-only {
+    display: none;
+  }
+
+  .footer {
+    flex-direction: column-reverse;
+    padding: 0 0 10px 0;
+
+    textarea {
+      width: 100%;
+    }
+
+    .promptWrapper {
+      flex-direction: column;
+    }
+
+    .actionsWrapper {
+      width: 100%;
+      padding: 10px 0;
+      position: static;
+      top: 0;
+      z-index: 100;
+    }
+  }
+}
