@@ -25,3 +25,5 @@ dist-ssr
 
 # Tests
 coverage
+dist.zip
+dist

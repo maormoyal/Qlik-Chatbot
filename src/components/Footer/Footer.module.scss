@@ -49,6 +49,12 @@
     background-color: unset;
   }
 
+  .switchBtn:hover,
+  .themeSwitchBtn:hover {
+    background-color: rgb(229, 220, 213);
+    border-radius: 10px;
+  }
+
   .switchBtn:focus {
     outline: none;
   }
@@ -111,12 +117,13 @@
     flex-direction: column-reverse;
     padding: 0 0 10px 0;
 
-    textarea {
-      width: 100%;
-    }
-
     .promptWrapper {
       flex-direction: column;
+
+      textarea {
+        width: 100%;
+        padding: 0 1.2rem;
+      }
     }
 
     .actionsWrapper {
