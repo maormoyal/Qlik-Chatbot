@@ -1,18 +1,29 @@
 import React, { useState, useRef } from 'react';
 import { useChatContext } from '../Chat/ChatContext';
+
 import styles from './Footer.module.scss';
+import clsx from 'clsx';
 
 import showSidebarIcon from '../../assets/show_sideba.svg';
 import hideSidebarIcon from '../../assets/hide_sidebar.svg';
+import lightModeIcon from '../../assets/light_mode.svg';
+import darkModeIcon from '../../assets/dark_mode.svg';
 
 const Footer: React.FC = () => {
   const [message, setMessage] = useState('');
-  const { sendMessage, isTypingReceivedMessage, showSidebar, setShowSidebar } =
-    useChatContext();
+  const {
+    sendMessage,
+    isTypingReceivedMessage,
+    showSidebar,
+    setShowSidebar,
+    theme,
+    toggleTheme,
+  } = useChatContext();
 
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const SidebarIcon = showSidebar ? hideSidebarIcon : showSidebarIcon;
+  const ThemeIcon = theme === 'light' ? darkModeIcon : lightModeIcon;
 
   const handleSendMessage = () => {
     if (!message.trim()) return;
@@ -48,14 +59,25 @@ const Footer: React.FC = () => {
     }
   };
 
+  const footerClasses = clsx(
+    styles.footer,
+    theme === 'dark' && styles.darkTheme
+  );
+
   return (
-    <div className={styles.footer}>
-      <button
-        className={styles.switchBtn}
-        onClick={() => setShowSidebar(!showSidebar)}
-      >
-        <img src={SidebarIcon} alt='SideBar' />
-      </button>
+    <div className={footerClasses}>
+      <div className={styles.actionsWrapper}>
+        <button className={styles.themeSwitchBtn} onClick={() => toggleTheme()}>
+          <img src={ThemeIcon} alt='Theme' width={'20px'} />
+        </button>
+
+        <button
+          className={styles.switchBtn}
+          onClick={() => setShowSidebar(!showSidebar)}
+        >
+          <img src={SidebarIcon} alt='SideBar' />
+        </button>
+      </div>
       <div className={styles.promptWrapper}>
         <textarea
           className={styles.textarea}

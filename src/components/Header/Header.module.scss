@@ -7,6 +7,11 @@
   padding: 0 2rem;
   text-align: center;
 
+  &.darkTheme {
+    background-color: #4a4b4a;
+    color: rgb(229, 220, 213);
+  }
+
   span {
     font-size: 1.5rem;
     color: #009845;
@@ -15,6 +20,7 @@
   .userWrapper {
     display: flex;
     align-items: center;
+    gap: 10px;
   }
 
   img.avatar {

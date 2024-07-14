@@ -2,8 +2,14 @@
   width: 20%;
   min-width: 200px;
   background: #f0f0f0;
-  padding: 10px;
+  // padding: 10px;
+  padding: 0 50px 0 0;
   overflow-y: auto;
+
+  &.darkTheme {
+    background-color: #4a4b4a;
+    color: rgb(229, 220, 213);
+  }
 
   h2 {
     margin-top: 0;
@@ -109,4 +115,9 @@
       background: #e0e0e0;
     }
   }
+}
+
+.darkTheme li:hover {
+  border-color: rgb(229, 220, 213);
+  color: rgb(0, 0, 0);
 }

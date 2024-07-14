@@ -2,11 +2,18 @@ import React from 'react';
 import styles from './Header.module.scss';
 import qlikLogo from '../../assets/logo-qlik.svg';
 import { useChatContext } from '../Chat/ChatContext';
+import clsx from 'clsx';
 
 const Header: React.FC = () => {
-  const { user } = useChatContext();
+  const { user, theme } = useChatContext();
+
+  const headerClasses = clsx(
+    styles.header,
+    theme === 'dark' && styles.darkTheme
+  );
+
   return (
-    <div className={styles.header}>
+    <div className={headerClasses}>
       <div>
         <img src={qlikLogo} alt='Qlik Logo' width={'70px'} />
         <span>Chatbot</span>

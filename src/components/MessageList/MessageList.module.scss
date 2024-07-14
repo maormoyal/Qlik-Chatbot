@@ -12,4 +12,9 @@
   background-color: rgb(229, 220, 213);
   position: relative;
   border-radius: 20px;
+
+  &.darkTheme {
+    background-color: #242424;
+    color: rgb(229, 220, 213);
+  }
 }

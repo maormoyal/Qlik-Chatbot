@@ -1,4 +1,3 @@
-import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { ChatProvider, useChatContext } from './ChatContext';
 import '@testing-library/jest-dom'; // Ensure this is imported

@@ -1,10 +1,19 @@
 import React, { useState, useEffect, useRef } from 'react';
+
 import styles from './SideBar.module.scss';
+import clsx from 'clsx';
+
 import { useChatContext } from '../Chat/ChatContext';
 
 const SideBar: React.FC = () => {
-  const { messages, resendMessage, deleteMessage, isTypingReceivedMessage } =
-    useChatContext();
+  const {
+    messages,
+    resendMessage,
+    deleteMessage,
+    isTypingReceivedMessage,
+    theme,
+  } = useChatContext();
+
   const latestMessages = messages.slice().reverse();
 
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
@@ -30,8 +39,13 @@ const SideBar: React.FC = () => {
     };
   }, []);
 
+  const sidebarClasses = clsx(
+    styles.sideBar,
+    theme === 'dark' && styles.darkTheme
+  );
+
   return (
-    <div className={styles.sideBar}>
+    <div className={sidebarClasses}>
       <ul>
         {latestMessages.map((msg) => {
           if (msg.type === 'sent') {

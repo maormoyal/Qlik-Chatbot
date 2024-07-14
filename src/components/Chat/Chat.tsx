@@ -6,23 +6,29 @@ import SideBar from '../SideBar/SideBar';
 import styles from './Chat.module.scss';
 import { useChatContext } from './ChatContext';
 import { User } from './Chat.types';
+import clsx from 'clsx';
 
 interface UserProps {
   user: User;
 }
 
 const Chat: React.FC<UserProps> = ({ user }) => {
-  const { showSidebar, setUser } = useChatContext();
+  const { showSidebar, setUser, theme } = useChatContext();
 
   useEffect(() => {
     setUser({
       name: user.name,
       avatar: user.avatar,
     });
-  }, [setUser]);
+  }, [setUser, user.avatar, user.name]);
+
+  const chatContainerClasses = clsx(
+    styles.chatContainer,
+    theme === 'dark' && styles.darkTheme
+  );
 
   return (
-    <div className={styles.chatContainer}>
+    <div className={chatContainerClasses}>
       <Header />
       <div className={styles.chatContent}>
         {showSidebar && <SideBar />}

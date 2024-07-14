@@ -1,15 +1,23 @@
 import React from 'react';
 import Message from '../Message/Message';
-import styles from './MessageList.module.scss';
 import { useChatContext } from '../Chat/ChatContext';
 import ScrollToBottom from 'react-scroll-to-bottom';
 
+import styles from './MessageList.module.scss';
+import clsx from 'clsx';
+
 const MessageList: React.FC = () => {
-  const { messages } = useChatContext();
+  const { messages, theme } = useChatContext();
+
+  const messageListClasses = clsx(
+    styles.messageList,
+    theme === 'dark' && styles.darkTheme,
+    'scrollToBottom'
+  );
 
   return (
     <ScrollToBottom
-      className={`${styles.messageList} scrollToBottom`}
+      className={messageListClasses}
       followButtonClassName='scrollToBottom__followButton'
     >
       {messages.map((message) => (

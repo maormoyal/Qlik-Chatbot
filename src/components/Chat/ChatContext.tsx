@@ -12,18 +12,22 @@ interface Message {
   time: string;
 }
 
+type Theme = 'light' | 'dark';
+
 interface ChatContextProps {
-  messages: Message[];
-  addMessage: (message: Message) => void;
   user: User;
   setUser: (user: User) => void;
-  isTypingReceivedMessage: boolean;
-  setIsTypingReceivedMessage: (isTyping: boolean) => void;
+  messages: Message[];
+  addMessage: (message: Message) => void;
   sendMessage: (text: string) => void;
   resendMessage: (id: string) => void;
   deleteMessage: (id: string) => void;
   showSidebar: boolean;
   setShowSidebar: (showSidebar: boolean) => void;
+  isTypingReceivedMessage: boolean;
+  setIsTypingReceivedMessage: (isTyping: boolean) => void;
+  theme: Theme;
+  toggleTheme: () => void;
 }
 
 const ChatContext = createContext<ChatContextProps | undefined>(undefined);
@@ -40,9 +44,15 @@ export const ChatProvider: React.FC<{ children: ReactNode }> = ({
     avatar: userAvatar,
   });
 
-  const [isTypingReceivedMessage, setIsTypingReceivedMessage] = useState(false);
+  const [isTypingReceivedMessage, setIsTypingReceivedMessage] =
+    useState<boolean>(false);
 
-  const [showSidebar, setShowSidebar] = useState(true);
+  const [showSidebar, setShowSidebar] = useState<boolean>(true);
+
+  const [theme, setTheme] = useState<Theme>('light');
+  const toggleTheme = () => {
+    setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
+  };
 
   const addMessage = (message: Message) => {
     setMessages((prevMessages) => [...prevMessages, message]);
@@ -105,6 +115,8 @@ export const ChatProvider: React.FC<{ children: ReactNode }> = ({
         deleteMessage,
         showSidebar,
         setShowSidebar,
+        theme,
+        toggleTheme,
       }}
     >
       {children}
