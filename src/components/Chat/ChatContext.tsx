@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
-import { mockMessages } from './Chat.data.spec';
+import { mockMessages } from './Chat.dataspec';
 import { User } from './Chat.types';
 import userAvatar from '../../assets/maor-avatar.jpeg';
 import { v4 as uuidv4 } from 'uuid';

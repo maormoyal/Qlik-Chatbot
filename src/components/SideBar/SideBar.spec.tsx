@@ -3,7 +3,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import SideBar from './SideBar';
 import { ChatProvider } from '../Chat/ChatContext';
-import { mockMessages } from '../Chat/Chat.data.spec';
+import { mockMessages } from '../Chat/Chat.dataspec';
 
 describe('SideBar', () => {
   it('renders without crashing', () => {
